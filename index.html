@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -631,13 +630,26 @@
       align-items:center;
       gap:12px;
       pointer-events:none;
-      transition:transform .22s ease;
-      will-change:transform;
+      --dock-shift:0px;
+      transform:translateY(calc(-1 * var(--dock-shift))) translateX(0);
+      opacity:1;
+      transition:transform .28s ease, opacity .28s ease;
+      will-change:transform, opacity;
+    }
+
+    .floating-dock.is-hidden{
+      transform:translateY(calc(-1 * var(--dock-shift))) translateX(88px);
+      opacity:0;
     }
 
     .cart-fab,
     .wa-float{
       pointer-events:auto;
+    }
+
+    .floating-dock.is-hidden .cart-fab,
+    .floating-dock.is-hidden .wa-float{
+      pointer-events:none;
     }
 
     .cart-fab{
@@ -654,6 +666,7 @@
       align-items:center;
       justify-content:center;
       flex:0 0 auto;
+      transition:transform .25s ease;
     }
 
     .cart-count{
@@ -684,7 +697,7 @@
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
       box-shadow:0 14px 34px rgba(0,0,0,.34);
-      transition:.25s ease;
+      transition:transform .25s ease;
       flex:0 0 auto;
     }
 
@@ -999,6 +1012,10 @@
         right:14px;
         bottom:14px;
         gap:10px;
+      }
+
+      .floating-dock.is-hidden{
+        transform:translateY(calc(-1 * var(--dock-shift))) translateX(82px);
       }
 
       .cart-fab,
@@ -1317,6 +1334,9 @@
     const WA_NUMBER = "5491111111111";
     const DEMO_MESSAGE = "WEB DEMO CIBORG 347 | HTTPS://ciborg347.onrender.com";
     let cart = [];
+    let lastScrollY = window.scrollY;
+    let scrollStopTimer = null;
+    let scrollTicking = false;
 
     function formatPrice(value){
       return new Intl.NumberFormat("es-AR", {
@@ -1435,16 +1455,47 @@
       window.open(url, "_blank");
     }
 
+    function showFloatingDock(){
+      floatingDock.classList.remove("is-hidden");
+    }
+
+    function hideFloatingDock(){
+      floatingDock.classList.add("is-hidden");
+    }
+
+    function scheduleDockReveal(){
+      clearTimeout(scrollStopTimer);
+      scrollStopTimer = setTimeout(() => {
+        if(!cartPanel.classList.contains("open")){
+          showFloatingDock();
+        }
+      }, 420);
+    }
+
+    function updateFloatingDockPosition(){
+      if(!floatingDock || !siteFooter) return;
+
+      const footerRect = siteFooter.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const overlap = Math.max(0, viewportHeight - footerRect.top + 14);
+
+      floatingDock.style.setProperty("--dock-shift", `${overlap}px`);
+    }
+
     function openCart(){
       cartPanel.classList.add("open");
       overlay.classList.add("show");
       document.body.style.overflow = "hidden";
+      hideFloatingDock();
     }
 
     function closeCart(){
       cartPanel.classList.remove("open");
       overlay.classList.remove("show");
       document.body.style.overflow = "";
+      showFloatingDock();
+      scheduleDockReveal();
+      updateFloatingDockPosition();
     }
 
     function scrollCarousel(direction){
@@ -1462,15 +1513,47 @@
       document.getElementById("pedido").scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
-    function updateFloatingDockPosition(){
-      if(!floatingDock || !siteFooter) return;
+    function handleScrollDock(){
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
 
-      const footerRect = siteFooter.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const extraGap = 14;
-      const overlap = Math.max(0, viewportHeight - footerRect.top + extraGap);
+      updateFloatingDockPosition();
 
-      floatingDock.style.transform = `translateY(-${overlap}px)`;
+      if(cartPanel.classList.contains("open")){
+        hideFloatingDock();
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      if(currentScrollY <= 40){
+        showFloatingDock();
+      } else if(delta > 6){
+        hideFloatingDock();
+        scheduleDockReveal();
+      } else if(delta < -6){
+        showFloatingDock();
+      } else {
+        scheduleDockReveal();
+      }
+
+      lastScrollY = currentScrollY;
+    }
+
+    function onScroll(){
+      if(scrollTicking) return;
+
+      scrollTicking = true;
+      window.requestAnimationFrame(() => {
+        handleScrollDock();
+        scrollTicking = false;
+      });
+    }
+
+    function wakeDock(){
+      if(cartPanel.classList.contains("open")) return;
+      showFloatingDock();
+      scheduleDockReveal();
+      updateFloatingDockPosition();
     }
 
     document.getElementById("prevBtn").addEventListener("click", () => scrollCarousel(-1));
@@ -1515,13 +1598,20 @@
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-    window.addEventListener("scroll", updateFloatingDockPosition, { passive:true });
-    window.addEventListener("resize", updateFloatingDockPosition);
+    window.addEventListener("scroll", onScroll, { passive:true });
+    window.addEventListener("resize", () => {
+      updateFloatingDockPosition();
+      wakeDock();
+    });
+
+    document.addEventListener("touchstart", wakeDock, { passive:true });
+    document.addEventListener("pointerdown", wakeDock);
 
     renderProducts();
     updateCart();
     updateFloatingDockPosition();
+    showFloatingDock();
+    scheduleDockReveal();
   </script>
 </body>
 </html>
-```
