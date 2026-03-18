@@ -3,28 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RA Estampados</title>
-  <meta name="description" content="RA Estampados. Diseños con estilo urbano, trabajos personalizados y productos con identidad propia." />
-  <meta property="og:title" content="RA Estampados" />
-  <meta property="og:description" content="Diseños con estilo urbano, trabajos personalizados y productos con identidad propia." />
+  <title>RA Estampados | Catalogo con carrito</title>
+  <meta name="description" content="Catalogo urbano de RA Estampados con carrito de compras y cierre por WhatsApp." />
+
+  <meta property="og:title" content="RA Estampados | Catalogo con carrito" />
+  <meta property="og:description" content="Diseños, estampados y productos personalizados con un estilo urbano y profesional." />
   <meta property="og:image" content="https://iili.io/qX7M5J4.jpg" />
   <meta property="og:type" content="website" />
 
   <style>
     :root{
-      --bg:#07070c;
-      --panel:rgba(255,255,255,.12);
-      --panel-2:rgba(255,255,255,.08);
+      --bg:#07070b;
+      --bg-soft:rgba(11,11,18,.62);
+      --panel:rgba(255,255,255,.11);
+      --panel-strong:rgba(255,255,255,.16);
       --line:rgba(255,255,255,.18);
-      --text:#f8f8fc;
-      --muted:#e7e7ef;
-      --pink:#ff2bd6;
-      --cyan:#00eaff;
-      --lime:#b8ff38;
-      --shadow:0 18px 48px rgba(0,0,0,.28);
-      --radius:26px;
+      --text:#f7f7fb;
+      --muted:#d7d7e2;
+      --neon-1:#ff2bd6;
+      --neon-2:#00f0ff;
+      --neon-3:#a6ff00;
+      --shadow:0 14px 50px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:18px;
       --max:1240px;
       --header-h:78px;
+      --wa-safe:18px;
     }
 
     *{box-sizing:border-box}
@@ -33,7 +37,7 @@
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
       color:var(--text);
-      background:#05050a;
+      background:var(--bg);
       overflow-x:hidden;
       position:relative;
     }
@@ -44,16 +48,27 @@
       inset:0;
       z-index:-3;
       background-image:url("https://iili.io/qX7kq4S.jpg");
-      background-repeat:no-repeat;
       background-position:center center;
+      background-repeat:no-repeat;
       background-size:cover;
-      transform:scale(1.02);
-      filter:saturate(1.03) contrast(1.03);
-      will-change:transform;
+      transform:scale(1.04);
+      filter:saturate(1.08) contrast(1.03);
     }
 
-    a{text-decoration:none;color:inherit}
-    img{display:block;max-width:100%}
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,43,214,.18), transparent 28%),
+        radial-gradient(circle at 84% 22%, rgba(0,240,255,.18), transparent 28%),
+        radial-gradient(circle at 50% 78%, rgba(166,255,0,.10), transparent 25%);
+      pointer-events:none;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
 
     .container{
       width:min(var(--max), calc(100% - 28px));
@@ -63,52 +78,56 @@
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
       border:1px solid var(--line);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
       box-shadow:var(--shadow);
     }
 
-    .glow{
+    .glow-border{
       position:relative;
       overflow:hidden;
     }
 
-    .glow::before{
+    .glow-border::before{
       content:"";
       position:absolute;
       inset:-1px;
       border-radius:inherit;
       padding:1px;
-      background:linear-gradient(120deg, rgba(255,43,214,.7), rgba(0,234,255,.7), rgba(184,255,56,.55));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      background:linear-gradient(120deg, rgba(255,43,214,.8), rgba(0,240,255,.8), rgba(166,255,0,.7));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;
               mask-composite:exclude;
-      opacity:.7;
+      opacity:.55;
       pointer-events:none;
     }
 
     .pulse{
-      animation:pulse 3.4s ease-in-out infinite;
+      animation:pulseGlow 3.5s ease-in-out infinite;
     }
 
-    @keyframes pulse{
-      0%,100%{box-shadow:0 0 0 rgba(255,43,214,0), 0 16px 42px rgba(0,0,0,.28)}
-      50%{box-shadow:0 0 26px rgba(255,43,214,.12), 0 16px 42px rgba(0,0,0,.32)}
+    @keyframes pulseGlow{
+      0%,100%{box-shadow:0 0 0 rgba(255,43,214,0), 0 12px 45px rgba(0,0,0,.28)}
+      50%{box-shadow:0 0 24px rgba(255,43,214,.14), 0 12px 45px rgba(0,0,0,.32)}
     }
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:70;
+      z-index:80;
       padding:12px 0;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
     }
 
     .topbar-inner{
-      min-height:var(--header-h);
+      height:var(--header-h);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:18px;
       border-radius:999px;
       padding:12px 18px;
     }
@@ -126,8 +145,8 @@
       border-radius:50%;
       overflow:hidden;
       flex:0 0 auto;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.08);
     }
 
     .brand-logo img{
@@ -136,10 +155,14 @@
       object-fit:cover;
     }
 
+    .brand-copy{
+      min-width:0;
+    }
+
     .brand-copy strong{
       display:block;
       font-size:1rem;
-      letter-spacing:.2px;
+      letter-spacing:.3px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -147,7 +170,7 @@
 
     .brand-copy span{
       display:block;
-      font-size:.84rem;
+      font-size:.82rem;
       color:var(--muted);
       white-space:nowrap;
       overflow:hidden;
@@ -163,39 +186,41 @@
     .nav a{
       padding:12px 14px;
       border-radius:999px;
-      transition:.22s ease;
-      font-size:.95rem;
+      font-size:.96rem;
+      transition:.25s ease;
+      color:#fff;
     }
 
     .nav a:hover{
-      background:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.09);
       transform:translateY(-1px);
     }
 
-    .nav .cta{
-      background:linear-gradient(90deg, rgba(255,43,214,.18), rgba(0,234,255,.18));
-      border:1px solid rgba(255,255,255,.16);
+    .nav-cta{
+      background:linear-gradient(90deg, rgba(255,43,214,.22), rgba(0,240,255,.22));
+      border:1px solid rgba(255,255,255,.2);
     }
 
     .menu-btn{
       display:none;
       width:50px;
       height:50px;
+      border:none;
       border-radius:50%;
-      border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.10);
-      cursor:pointer;
-      padding:0;
+      border:1px solid rgba(255,255,255,.18);
       color:#fff;
+      cursor:pointer;
+      flex:0 0 auto;
     }
 
     .menu-btn span{
       display:block;
       width:22px;
       height:2px;
+      border-radius:999px;
       background:#fff;
       margin:4px auto;
-      border-radius:999px;
       transition:.25s ease;
     }
 
@@ -208,28 +233,29 @@
 
     .mobile-menu a{
       display:block;
-      padding:14px;
+      padding:14px 14px;
       border-radius:16px;
+      color:#fff;
     }
 
-    .mobile-menu a:hover{background:rgba(255,255,255,.08)}
-    .mobile-menu.show{display:block}
+    .mobile-menu a:hover{
+      background:rgba(255,255,255,.08);
+    }
 
     .hero{
-      padding:26px 0 10px;
+      padding:28px 0 8px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.05fr .95fr;
+      grid-template-columns:1.1fr .9fr;
       gap:22px;
       align-items:center;
     }
 
-    .hero-copy,
-    .hero-visual{
+    .hero-card{
       border-radius:32px;
-      padding:30px;
+      padding:34px;
     }
 
     .eyebrow{
@@ -237,34 +263,36 @@
       align-items:center;
       gap:8px;
       font-size:.82rem;
-      text-transform:uppercase;
       letter-spacing:.16em;
+      text-transform:uppercase;
+      color:#fff;
       padding:10px 14px;
       border-radius:999px;
+      margin-bottom:18px;
       background:rgba(255,255,255,.10);
       border:1px solid rgba(255,255,255,.16);
-      margin-bottom:16px;
     }
 
     .hero h1{
       margin:0 0 14px;
-      font-size:clamp(2rem, 5vw, 4.2rem);
-      line-height:.97;
-      letter-spacing:-.05em;
+      font-size:clamp(2.1rem, 5vw, 4.35rem);
+      line-height:.98;
+      letter-spacing:-.04em;
       text-wrap:balance;
-      text-shadow:0 4px 18px rgba(0,0,0,.24);
+      text-shadow:0 4px 18px rgba(0,0,0,.30);
     }
 
-    .hero h1 .a{color:var(--pink)}
-    .hero h1 .b{color:var(--cyan)}
-    .hero h1 .c{color:var(--lime)}
+    .hero h1 .accent-1{color:var(--neon-1)}
+    .hero h1 .accent-2{color:var(--neon-2)}
+    .hero h1 .accent-3{color:var(--neon-3)}
 
     .hero p{
       margin:0;
-      max-width:660px;
-      line-height:1.65;
+      max-width:650px;
       color:#fff;
-      text-shadow:0 3px 12px rgba(0,0,0,.22);
+      font-size:1.02rem;
+      line-height:1.65;
+      text-shadow:0 3px 14px rgba(0,0,0,.28);
     }
 
     .hero-actions{
@@ -278,35 +306,46 @@
       appearance:none;
       border:none;
       cursor:pointer;
-      border-radius:16px;
       padding:14px 18px;
+      border-radius:16px;
       color:#fff;
       font-weight:700;
-      transition:.22s ease;
+      letter-spacing:.2px;
+      transition:.25s ease;
       text-align:center;
     }
 
-    .btn:hover{transform:translateY(-2px)}
     .btn-primary{
-      background:linear-gradient(90deg, var(--pink), #883cff, var(--cyan));
-    }
-    .btn-secondary{
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(90deg, var(--neon-1), #8c40ff, var(--neon-2));
+      box-shadow:0 10px 28px rgba(0,0,0,.24);
     }
 
-    .hero-frame{
-      min-height:430px;
-      border-radius:26px;
+    .btn-secondary{
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .hero-visual{
+      border-radius:32px;
+      padding:16px;
+    }
+
+    .hero-visual-frame{
+      border-radius:24px;
       overflow:hidden;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
+      min-height:420px;
+      background:rgba(255,255,255,.10);
       display:flex;
       align-items:center;
       justify-content:center;
+      border:1px solid rgba(255,255,255,.18);
     }
 
-    .hero-frame img{
+    .hero-visual-frame img{
       width:100%;
       height:100%;
       object-fit:cover;
@@ -327,21 +366,22 @@
 
     .section-head h2{
       margin:0;
-      font-size:clamp(1.55rem, 3vw, 2.55rem);
-      line-height:1.03;
-      letter-spacing:-.04em;
-      text-shadow:0 3px 12px rgba(0,0,0,.22);
+      font-size:clamp(1.55rem, 3vw, 2.6rem);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      text-shadow:0 3px 14px rgba(0,0,0,.25);
     }
 
     .section-head p{
       margin:8px 0 0;
-      max-width:760px;
-      line-height:1.6;
       color:#fff;
-      text-shadow:0 2px 10px rgba(0,0,0,.18);
+      max-width:720px;
+      line-height:1.6;
+      text-shadow:0 2px 10px rgba(0,0,0,.22);
     }
 
     .carousel-shell{
+      position:relative;
       border-radius:30px;
       padding:18px;
     }
@@ -350,26 +390,25 @@
       display:flex;
       gap:10px;
       align-items:center;
-      flex:0 0 auto;
     }
 
-    .control-btn{
+    .carousel-btn{
       width:48px;
       height:48px;
       border-radius:50%;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(255,255,255,.12);
       color:#fff;
-      font-size:1.2rem;
       cursor:pointer;
-      transition:.22s ease;
+      font-size:1.2rem;
+      transition:.25s ease;
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
     }
 
-    .control-btn:hover{
+    .carousel-btn:hover{
       transform:translateY(-2px) scale(1.03);
-      box-shadow:0 0 20px rgba(255,43,214,.14);
+      background:rgba(255,255,255,.18);
     }
 
     .products-track{
@@ -378,18 +417,19 @@
       overflow-x:auto;
       scroll-snap-type:x mandatory;
       scroll-behavior:smooth;
+      padding:8px 2px 6px;
       scrollbar-width:none;
-      padding:6px 2px 4px;
     }
 
     .products-track::-webkit-scrollbar{display:none}
 
     .product-card{
+      scroll-snap-align:start;
       min-width:300px;
       width:300px;
       border-radius:24px;
       overflow:hidden;
-      scroll-snap-align:start;
+      position:relative;
       display:flex;
       flex-direction:column;
     }
@@ -397,38 +437,33 @@
     .product-media{
       position:relative;
       aspect-ratio:1/1;
-      padding:14px;
-      background:rgba(255,255,255,.06);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
     }
 
     .product-media img{
       width:100%;
       height:100%;
-      object-fit:contain;
-      object-position:center;
-      filter:drop-shadow(0 12px 20px rgba(0,0,0,.18));
-      transition:transform .35s ease;
+      object-fit:cover;
+      transition:transform .45s ease;
     }
 
     .product-card:hover .product-media img{
-      transform:scale(1.03);
+      transform:scale(1.06);
     }
 
-    .badge{
+    .product-badge{
       position:absolute;
       top:12px;
       left:12px;
       z-index:2;
       padding:8px 10px;
       border-radius:999px;
-      font-size:.7rem;
-      font-weight:800;
+      font-size:.72rem;
+      font-weight:700;
       letter-spacing:.08em;
       text-transform:uppercase;
-      background:rgba(8,8,14,.55);
+      background:rgba(10,10,18,.56);
       border:1px solid rgba(255,255,255,.18);
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
@@ -442,30 +477,30 @@
       flex:1;
     }
 
-    .product-top{
+    .product-title{
       display:flex;
       align-items:start;
       justify-content:space-between;
       gap:10px;
     }
 
-    .product-top h3{
+    .product-title h3{
       margin:0;
-      font-size:1.03rem;
+      font-size:1.05rem;
       line-height:1.2;
     }
 
     .price{
       white-space:nowrap;
-      color:var(--lime);
       font-weight:800;
-      text-shadow:0 0 14px rgba(184,255,56,.15);
+      color:var(--neon-3);
+      text-shadow:0 0 18px rgba(166,255,0,.22);
     }
 
     .product-body p{
       margin:0;
-      line-height:1.55;
       color:#fff;
+      line-height:1.55;
       font-size:.95rem;
     }
 
@@ -478,41 +513,45 @@
     .mini-btn{
       flex:1;
       border:none;
-      border-radius:14px;
       cursor:pointer;
-      padding:12px;
+      border-radius:14px;
+      padding:12px 12px;
       color:#fff;
       font-weight:700;
-      transition:.22s ease;
+      transition:.25s ease;
     }
 
-    .mini-btn:hover{transform:translateY(-2px)}
     .mini-btn.view{
       background:rgba(255,255,255,.10);
       border:1px solid rgba(255,255,255,.16);
     }
+
     .mini-btn.add{
-      background:linear-gradient(90deg, rgba(255,43,214,.95), rgba(0,234,255,.95));
+      background:linear-gradient(90deg, rgba(255,43,214,.95), rgba(0,240,255,.95));
     }
 
-    .highlights{
+    .mini-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .benefits-grid{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(4, 1fr);
       gap:16px;
     }
 
-    .highlight{
-      border-radius:24px;
+    .benefit{
+      border-radius:22px;
       padding:22px;
     }
 
-    .highlight strong{
+    .benefit strong{
       display:block;
       margin-bottom:8px;
       font-size:1rem;
     }
 
-    .highlight p{
+    .benefit p{
       margin:0;
       line-height:1.55;
       color:#fff;
@@ -522,22 +561,22 @@
       border-radius:30px;
       padding:28px;
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1.15fr .85fr;
       gap:18px;
       align-items:center;
     }
 
     .cta-box h3{
       margin:0 0 10px;
-      font-size:clamp(1.45rem, 3vw, 2.4rem);
+      font-size:clamp(1.5rem, 3vw, 2.4rem);
       line-height:1.06;
-      letter-spacing:-.04em;
+      letter-spacing:-.03em;
     }
 
     .cta-box p{
       margin:0;
-      line-height:1.65;
       color:#fff;
+      line-height:1.65;
     }
 
     .cta-actions{
@@ -548,7 +587,7 @@
     }
 
     .footer{
-      padding:20px 0 116px;
+      padding:20px 0 110px;
     }
 
     .footer-box{
@@ -563,48 +602,30 @@
 
     .footer-box p{
       margin:0;
-      line-height:1.5;
       color:#fff;
+      line-height:1.5;
     }
 
-    .footer-box a strong{color:var(--pink)}
+    .footer-box a strong{
+      color:var(--neon-1);
+    }
 
-    .floating-wrap{
+    .cart-fab{
       position:fixed;
       right:18px;
-      bottom:16px;
-      z-index:60;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      transition:transform .25s ease;
-    }
-
-    .floating-wrap.lift{
-      transform:translateY(-110px);
-    }
-
-    .cart-fab,
-    .wa-float{
+      bottom:86px;
+      z-index:90;
       width:62px;
       height:62px;
       border-radius:50%;
+      border:none;
+      cursor:pointer;
+      color:#fff;
+      background:linear-gradient(135deg, var(--neon-1), #7f35ff, var(--neon-2));
+      box-shadow:0 14px 34px rgba(0,0,0,.34);
       display:flex;
       align-items:center;
       justify-content:center;
-      border:none;
-      cursor:pointer;
-      box-shadow:0 14px 34px rgba(0,0,0,.32);
-      transition:.22s ease;
-    }
-
-    .cart-fab:hover,
-    .wa-float:hover{transform:translateY(-3px) scale(1.03)}
-
-    .cart-fab{
-      position:relative;
-      color:#fff;
-      background:linear-gradient(135deg, var(--pink), #7e35ff, var(--cyan));
     }
 
     .cart-count{
@@ -617,17 +638,33 @@
       border-radius:999px;
       display:grid;
       place-items:center;
+      background:var(--neon-3);
+      color:#111;
       font-size:.78rem;
       font-weight:800;
-      background:var(--lime);
-      color:#111;
     }
 
     .wa-float{
+      position:fixed;
+      right:18px;
+      bottom:16px;
+      z-index:90;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.20);
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
+      box-shadow:0 14px 34px rgba(0,0,0,.34);
+      transition:.25s ease;
+    }
+
+    .wa-float:hover{
+      transform:translateY(-3px) scale(1.04);
     }
 
     .wa-float svg{
@@ -637,20 +674,22 @@
       filter:drop-shadow(0 0 8px rgba(37,211,102,.28));
     }
 
-    .side-panel{
+    .cart-panel{
       position:fixed;
       top:0;
       right:-430px;
       width:min(420px, 100%);
       height:100dvh;
-      z-index:100;
+      z-index:110;
       padding:16px;
-      transition:right .32s ease;
+      transition:right .35s ease;
     }
 
-    .side-panel.open{right:0}
+    .cart-panel.open{
+      right:0;
+    }
 
-    .side-panel-inner{
+    .cart-panel-inner{
       height:100%;
       border-radius:28px;
       display:flex;
@@ -658,21 +697,21 @@
       overflow:hidden;
     }
 
-    .panel-head{
+    .cart-head{
       padding:18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      border-bottom:1px solid rgba(255,255,255,.12);
+      border-bottom:1px solid rgba(255,255,255,.14);
     }
 
-    .panel-head h3{
+    .cart-head h3{
       margin:0;
-      font-size:1.1rem;
+      font-size:1.15rem;
     }
 
-    .icon-btn{
+    .close-cart{
       width:44px;
       height:44px;
       border-radius:50%;
@@ -680,13 +719,7 @@
       background:rgba(255,255,255,.10);
       color:#fff;
       cursor:pointer;
-      font-size:1.15rem;
-      transition:.2s ease;
-    }
-
-    .icon-btn:hover{
-      box-shadow:0 0 18px rgba(255,43,214,.16);
-      transform:translateY(-2px);
+      font-size:1.2rem;
     }
 
     .cart-items{
@@ -701,8 +734,8 @@
     .cart-empty{
       margin:auto 0;
       text-align:center;
-      line-height:1.6;
       color:#fff;
+      line-height:1.6;
       padding:20px;
     }
 
@@ -720,16 +753,13 @@
     .cart-item img{
       width:74px;
       height:74px;
-      object-fit:contain;
-      object-position:center;
+      object-fit:cover;
       border-radius:14px;
-      background:rgba(255,255,255,.05);
-      padding:6px;
     }
 
     .cart-item h4{
       margin:0 0 6px;
-      font-size:.94rem;
+      font-size:.95rem;
       line-height:1.2;
     }
 
@@ -762,12 +792,12 @@
       color:#fff;
       cursor:pointer;
       font-size:1.05rem;
-      opacity:.85;
+      opacity:.8;
     }
 
-    .panel-foot{
+    .cart-foot{
       padding:16px;
-      border-top:1px solid rgba(255,255,255,.12);
+      border-top:1px solid rgba(255,255,255,.14);
       display:flex;
       flex-direction:column;
       gap:12px;
@@ -778,228 +808,32 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      font-weight:800;
+      font-size:1rem;
+      font-weight:700;
     }
 
-    .screen-overlay{
+    .checkout-btn{
+      width:100%;
+    }
+
+    .overlay{
       position:fixed;
       inset:0;
-      background:rgba(5,6,12,.30);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.34);
+      z-index:100;
       opacity:0;
       visibility:hidden;
       transition:.25s ease;
-      z-index:90;
     }
 
-    .screen-overlay.show{
+    .overlay.show{
       opacity:1;
       visibility:visible;
     }
 
-    .product-viewer{
-      position:fixed;
-      inset:0;
-      z-index:120;
-      padding:20px;
-      display:none;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .product-viewer.show{display:flex}
-
-    .product-viewer-shell{
-      width:min(1200px, 100%);
-      max-height:min(92vh, 900px);
-      border-radius:34px;
-      padding:18px;
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:18px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .viewer-nav{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      z-index:3;
-      width:52px;
-      height:52px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.12);
-      color:#fff;
-      font-size:1.3rem;
-      cursor:pointer;
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      transition:.22s ease;
-    }
-
-    .viewer-nav:hover{
-      box-shadow:0 0 18px rgba(255,43,214,.16);
-      transform:translateY(-50%) scale(1.04);
-    }
-
-    .viewer-prev{left:14px}
-    .viewer-next{right:14px}
-
-    .viewer-close{
-      position:absolute;
-      top:14px;
-      right:14px;
-      z-index:4;
-    }
-
-    .viewer-media{
-      min-height:560px;
-      border-radius:28px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      overflow:hidden;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      touch-action:none;
-    }
-
-    .viewer-stage{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      position:relative;
-    }
-
-    .viewer-stage img{
-      max-width:100%;
-      max-height:100%;
-      width:auto;
-      height:auto;
-      object-fit:contain;
-      transform:translate3d(var(--tx,0px), var(--ty,0px), 0) scale(var(--scale,1));
-      transform-origin:center center;
-      transition:transform .18s ease;
-      user-select:none;
-      -webkit-user-drag:none;
-      pointer-events:none;
-      filter:drop-shadow(0 14px 24px rgba(0,0,0,.18));
-    }
-
-    .zoom-controls{
-      position:absolute;
-      right:14px;
-      bottom:14px;
-      z-index:3;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .zoom-btn{
-      min-width:46px;
-      height:46px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.12);
-      color:#fff;
-      cursor:pointer;
-      font-weight:800;
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      box-shadow:0 0 0 rgba(255,43,214,0);
-      animation:zoomPulse 3s ease-in-out infinite;
-      transition:.22s ease;
-    }
-
-    @keyframes zoomPulse{
-      0%,100%{box-shadow:0 0 0 rgba(255,43,214,0)}
-      50%{box-shadow:0 0 18px rgba(255,43,214,.16)}
-    }
-
-    .zoom-btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.18);
-    }
-
-    .viewer-info{
-      border-radius:28px;
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      min-width:0;
-    }
-
-    .viewer-tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      align-self:flex-start;
-      padding:10px 14px;
-      border-radius:999px;
-      margin-bottom:14px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.16);
-      font-size:.82rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-    }
-
-    .viewer-info h3{
-      margin:0 0 10px;
-      font-size:clamp(1.8rem, 3vw, 3rem);
-      line-height:1.02;
-      letter-spacing:-.04em;
-    }
-
-    .viewer-price{
-      margin:0 0 14px;
-      font-size:1.3rem;
-      font-weight:900;
-      color:var(--lime);
-      text-shadow:0 0 18px rgba(184,255,56,.16);
-    }
-
-    .viewer-info p{
-      margin:0 0 16px;
-      line-height:1.7;
-      color:#fff;
-    }
-
-    .viewer-list{
-      display:grid;
-      gap:10px;
-      margin:0 0 20px;
-      padding:0;
-      list-style:none;
-    }
-
-    .viewer-list li{
-      padding:12px 14px;
-      border-radius:16px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-    }
-
-    .viewer-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:auto;
-    }
-
     .reveal{
       opacity:0;
-      transition:transform .8s cubic-bezier(.22,1,.36,1), opacity .8s ease;
+      transition:transform .85s cubic-bezier(.22,1,.36,1), opacity .85s ease;
       will-change:transform, opacity;
     }
 
@@ -1010,119 +844,150 @@
       transform:translateX(0);
     }
 
-    @media (max-width:1100px){
+    @media (max-width: 1100px){
       .hero-grid,
-      .cta-box,
-      .product-viewer-shell{
+      .cta-box{
         grid-template-columns:1fr;
       }
 
-      .cta-actions{justify-content:flex-start}
-      .highlights{grid-template-columns:repeat(2,1fr)}
-      .viewer-media{min-height:360px}
-      .viewer-info{padding:22px}
-      .viewer-nav{
-        top:auto;
-        bottom:18px;
-        transform:none;
+      .cta-actions{
+        justify-content:flex-start;
       }
-      .viewer-nav:hover{transform:scale(1.04)}
-      .viewer-prev{left:18px}
-      .viewer-next{right:18px}
+
+      .benefits-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
     }
 
-    @media (max-width:900px){
+    @media (max-width: 900px){
       .nav{display:none}
       .menu-btn{display:block}
-      .topbar-inner{border-radius:28px}
-      .hero-copy,
-      .hero-visual{padding:22px}
-      .hero-frame{min-height:330px}
-      .section-head{flex-direction:column;align-items:flex-start}
+      .mobile-menu.show{display:block}
+
+      .topbar-inner{
+        border-radius:28px;
+      }
+
+      .hero-card{
+        padding:24px;
+      }
+
+      .hero-visual-frame{
+        min-height:330px;
+      }
+
+      .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
     }
 
-    @media (max-width:700px){
+    @media (max-width: 700px){
       body::before{
         background-size:cover;
         background-position:center top;
         transform:scale(1.01);
       }
 
-      .container{width:min(var(--max), calc(100% - 18px))}
-      .topbar{padding:10px 0}
+      .container{
+        width:min(var(--max), calc(100% - 18px));
+      }
+
+      .topbar{
+        padding:10px 0;
+      }
+
       .topbar-inner{
-        min-height:72px;
         padding:10px 12px;
         gap:10px;
+        height:74px;
       }
-      .brand-logo{width:46px;height:46px}
-      .brand-copy strong{font-size:.95rem}
-      .brand-copy span{font-size:.76rem}
 
-      .hero{padding-top:14px}
-      .hero-copy,
+      .brand-logo{
+        width:46px;
+        height:46px;
+      }
+
+      .brand-copy strong{
+        font-size:.95rem;
+      }
+
+      .brand-copy span{
+        font-size:.76rem;
+      }
+
+      .hero{
+        padding-top:16px;
+      }
+
+      .hero-card,
       .hero-visual,
       .carousel-shell,
-      .cta-box{border-radius:24px}
-      .hero h1{font-size:clamp(1.9rem, 10vw, 2.95rem)}
-      .hero-actions,
-      .cta-actions,
-      .viewer-actions{flex-direction:column}
-      .btn,
-      .mini-btn{width:100%}
+      .cta-box{
+        border-radius:24px;
+      }
 
-      .products-track{gap:14px}
+      .hero-card{
+        padding:20px;
+      }
+
+      .hero h1{
+        font-size:clamp(1.9rem, 10vw, 3rem);
+      }
+
+      .hero p,
+      .section-head p,
+      .benefit p,
+      .cta-box p{
+        font-size:.96rem;
+      }
+
+      .hero-actions,
+      .cta-actions{
+        flex-direction:column;
+      }
+
+      .btn,
+      .mini-btn{
+        width:100%;
+      }
+
+      .products-track{
+        gap:14px;
+      }
+
       .product-card{
         min-width:82vw;
         width:82vw;
       }
 
-      .highlights{grid-template-columns:1fr}
-      .footer{padding-bottom:126px}
-      .floating-wrap{
-        right:14px;
-        bottom:14px;
+      .benefits-grid{
+        grid-template-columns:1fr;
       }
-      .floating-wrap.lift{transform:translateY(-96px)}
-      .cart-fab,.wa-float{
+
+      .footer{
+        padding-bottom:116px;
+      }
+
+      .cart-fab{
+        bottom:88px;
         width:58px;
         height:58px;
       }
 
-      .product-viewer{
-        padding:10px;
-      }
-      .product-viewer-shell{
-        padding:12px;
-        border-radius:26px;
-        max-height:95vh;
-      }
-      .viewer-media{
-        min-height:290px;
-        border-radius:22px;
-      }
-      .viewer-info{
-        border-radius:22px;
-        padding:18px;
-      }
-      .zoom-controls{
-        right:10px;
-        bottom:10px;
-        gap:8px;
-      }
-      .zoom-btn{
-        min-width:42px;
-        height:42px;
-        border-radius:12px;
+      .wa-float{
+        width:58px;
+        height:58px;
       }
     }
 
-    @media (max-width:430px){
+    @media (max-width: 430px){
       .product-card{
         min-width:86vw;
         width:86vw;
       }
-      .side-panel{
+
+      .cart-panel{
         width:100%;
         right:-100%;
       }
@@ -1130,26 +995,26 @@
   </style>
 </head>
 <body>
-  <div class="screen-overlay" id="screenOverlay"></div>
+  <div class="overlay" id="overlay"></div>
 
   <header class="topbar">
     <div class="container">
-      <div class="topbar-inner glass glow pulse">
+      <div class="topbar-inner glass glow-border pulse">
         <a href="#inicio" class="brand">
           <div class="brand-logo">
             <img src="https://iili.io/qX7M5J4.jpg" alt="RA Estampados" />
           </div>
           <div class="brand-copy">
             <strong>RA Estampados</strong>
-            <span>Diseño urbano y trabajos personalizados</span>
+            <span>Catalogo urbano con carrito</span>
           </div>
         </a>
 
         <nav class="nav">
           <a href="#inicio">Inicio</a>
           <a href="#productos">Productos</a>
-          <a href="#estilo">Estilo</a>
-          <a href="#pedido" class="cta">Hacer un pedido</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#pedido" class="nav-cta">Pedi tu diseño</a>
         </nav>
 
         <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
@@ -1159,11 +1024,11 @@
         </button>
       </div>
 
-      <div class="mobile-menu glass glow" id="mobileMenu">
+      <div class="mobile-menu glass glow-border" id="mobileMenu">
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
-        <a href="#estilo">Estilo</a>
-        <a href="#pedido">Hacer un pedido</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#pedido">Pedi tu diseño</a>
       </div>
     </div>
   </header>
@@ -1172,26 +1037,26 @@
     <section class="hero" id="inicio">
       <div class="container">
         <div class="hero-grid">
-          <div class="hero-copy glass glow reveal from-left">
+          <div class="hero-card glass glow-border reveal from-left">
             <span class="eyebrow">RA ESTAMPADOS</span>
             <h1>
-              Diseños con <span class="a">carácter</span>,
-              detalles con <span class="b">presencia</span> y
-              estilo <span class="c">urbano</span>.
+              Estilo <span class="accent-1">urbano</span>,
+              estampas con <span class="accent-2">presencia</span> y
+              detalles <span class="accent-3">que destacan</span>.
             </h1>
             <p>
-              Trabajos personalizados pensados para destacar. Prendas, ideas y piezas visuales con identidad propia, buena presencia y una terminación que llama la atención desde el primer vistazo.
+              Diseños personalizados, estampados llamativos, trabajos por mayor y menor y una vidriera digital pensada para mostrar mejor cada producto de forma simple, moderna y profesional.
             </p>
 
             <div class="hero-actions">
               <a href="#productos" class="btn btn-primary">Ver productos</a>
-              <a href="#pedido" class="btn btn-secondary">Consultar pedido</a>
+              <a href="#pedido" class="btn btn-secondary">Hacer un pedido</a>
             </div>
           </div>
 
-          <div class="hero-visual glass glow reveal from-right">
-            <div class="hero-frame">
-              <img src="https://iili.io/qX7M5J4.jpg" alt="RA Estampados" />
+          <div class="hero-visual glass glow-border reveal from-right">
+            <div class="hero-visual-frame">
+              <img src="https://iili.io/qX7M5J4.jpg" alt="Logo RA Estampados" />
             </div>
           </div>
         </div>
@@ -1202,54 +1067,54 @@
       <div class="container">
         <div class="section-head reveal from-right">
           <div>
-            <h2>Trabajos destacados</h2>
+            <h2>Productos destacados</h2>
             <p>
-              Cada pieza tiene su propia fuerza visual. Tocá cualquier producto para verlo en grande, recorrerlo mejor y conocer más detalles.
+              Los productos se muestran en carrusel porque para este estilo visual queda mejor, se ve mas dinamico en celular y hace que cada pieza tenga mas protagonismo.
             </p>
           </div>
 
           <div class="carousel-controls">
-            <button class="control-btn" id="prevBtn" aria-label="Anterior">&#10094;</button>
-            <button class="control-btn" id="nextBtn" aria-label="Siguiente">&#10095;</button>
+            <button class="carousel-btn" id="prevBtn" aria-label="Anterior">&#10094;</button>
+            <button class="carousel-btn" id="nextBtn" aria-label="Siguiente">&#10095;</button>
           </div>
         </div>
 
-        <div class="carousel-shell glass glow reveal from-left">
+        <div class="carousel-shell glass glow-border reveal from-left">
           <div class="products-track" id="productsTrack"></div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="estilo">
+    <section class="section" id="servicios">
       <div class="container">
         <div class="section-head reveal from-left">
           <div>
-            <h2>Una marca con impronta propia</h2>
+            <h2>Lo que hacen en RA</h2>
             <p>
-              Diseños llamativos, trabajos a pedido y una línea visual pensada para destacar en serio, tanto en piezas únicas como en encargos en cantidad.
+              Un enfoque pensado para destacar trabajos, mostrar variedad y facilitar pedidos por WhatsApp sin complicar al cliente.
             </p>
           </div>
         </div>
 
-        <div class="highlights">
-          <article class="highlight glass glow reveal from-left">
+        <div class="benefits-grid">
+          <article class="benefit glass glow-border reveal from-left">
             <strong>Diseños personalizados</strong>
-            <p>Cada trabajo puede adaptarse a una idea puntual, un estilo específico o una necesidad concreta.</p>
+            <p>Opciones adaptadas a cada idea para lograr piezas con identidad propia y terminacion prolija.</p>
           </article>
 
-          <article class="highlight glass glow reveal from-right">
-            <strong>Fuerza visual</strong>
-            <p>Piezas pensadas para destacar con una estética marcada, canchera y con mucha personalidad.</p>
+          <article class="benefit glass glow-border reveal from-right">
+            <strong>Ventas mayor y menor</strong>
+            <p>Trabajos para clientes individuales, marcas, eventos, equipos o pedidos en cantidad.</p>
           </article>
 
-          <article class="highlight glass glow reveal from-left">
-            <strong>Mayor y menor</strong>
-            <p>Opciones para trabajos individuales, pedidos en cantidad, marcas, grupos o propuestas especiales.</p>
+          <article class="benefit glass glow-border reveal from-left">
+            <strong>Estilo visual fuerte</strong>
+            <p>Productos que resaltan mejor con una presencia digital moderna, urbana y mas profesional.</p>
           </article>
 
-          <article class="highlight glass glow reveal from-right">
-            <strong>Hecho para lucirse</strong>
-            <p>Una propuesta ideal para quienes buscan algo con presencia, carácter y mejor terminación visual.</p>
+          <article class="benefit glass glow-border reveal from-right">
+            <strong>Pedidos simples</strong>
+            <p>Carrito con cierre por WhatsApp para consultar rapido, enviar el pedido y seguir la venta sin vueltas.</p>
           </article>
         </div>
       </div>
@@ -1257,283 +1122,189 @@
 
     <section class="section" id="pedido">
       <div class="container">
-        <div class="cta-box glass glow pulse reveal from-right">
+        <div class="cta-box glass glow-border pulse reveal from-right">
           <div>
-            <h3>¿Tenés una idea o querés consultar por un trabajo?</h3>
+            <h3>Queres pedir un diseño o consultar por un trabajo personalizado?</h3>
             <p>
-              Podés elegir productos, sumarlos a tu pedido y escribir directamente para coordinar detalles, variantes, cantidades o una propuesta personalizada.
+              Podes armar tu carrito y enviarlo por WhatsApp, o escribir directamente para pedir una idea puntual, presupuesto o trabajo por cantidad.
             </p>
           </div>
 
           <div class="cta-actions">
-            <button class="btn btn-primary" id="openCartBtn">Abrir pedido</button>
-            <a href="#" class="btn btn-secondary" id="directWaBtn">Escribir por WhatsApp</a>
+            <button class="btn btn-primary" id="openCartBtn">Abrir carrito</button>
+            <a href="#" class="btn btn-secondary" id="directWaBtn">Consultar por WhatsApp</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer" id="footer">
+  <footer class="footer">
     <div class="container">
-      <div class="footer-box glass glow">
-        <p>RA Estampados | Diseños urbanos, trabajos personalizados y piezas con identidad.</p>
+      <div class="footer-box glass glow-border">
+        <p>RA Estampados | Catalogo demo con estilo urbano, glassmorph y cierre por WhatsApp.</p>
         <p>Creado y diseñado por <a href="https://ciborg347oficial.onrender.com" target="_blank" rel="noopener noreferrer"><strong>Ciborg 347</strong></a></p>
       </div>
     </div>
   </footer>
 
-  <div class="floating-wrap" id="floatingWrap">
-    <button class="cart-fab" id="cartFab" aria-label="Abrir pedido">
-      <span style="font-size:1.35rem;">🛒</span>
-      <span class="cart-count" id="cartCount">0</span>
-    </button>
+  <button class="cart-fab" id="cartFab" aria-label="Abrir carrito">
+    <span style="font-size:1.4rem;">🛒</span>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
 
-    <a href="#" class="wa-float" id="waFloat" aria-label="WhatsApp">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16" aria-hidden="true">
-        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-      </svg>
-    </a>
-  </div>
+  <a class="wa-float" id="waFloat" href="#" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+    </svg>
+  </a>
 
-  <aside class="side-panel" id="cartPanel">
-    <div class="side-panel-inner glass glow">
-      <div class="panel-head">
-        <h3>Tu pedido</h3>
-        <button class="icon-btn" id="closeCartBtn" aria-label="Cerrar">&times;</button>
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-panel-inner glass glow-border">
+      <div class="cart-head">
+        <h3>Tu carrito</h3>
+        <button class="close-cart" id="closeCartBtn" aria-label="Cerrar carrito">&times;</button>
       </div>
 
       <div class="cart-items" id="cartItems">
-        <div class="cart-empty">Todavía no agregaste productos.<br />Elegí lo que te guste y armá tu pedido.</div>
+        <div class="cart-empty">Todavia no agregaste productos.<br />Elegí lo que te guste y armá tu pedido.</div>
       </div>
 
-      <div class="panel-foot">
+      <div class="cart-foot">
         <div class="total-row">
           <span>Total</span>
           <strong id="cartTotal">$0</strong>
         </div>
-        <button class="btn btn-primary" id="checkoutBtn">Enviar por WhatsApp</button>
+        <button class="btn btn-primary checkout-btn" id="checkoutBtn">Enviar pedido por WhatsApp</button>
       </div>
     </div>
   </aside>
-
-  <section class="product-viewer" id="productViewer">
-    <div class="product-viewer-shell glass glow">
-      <button class="viewer-nav viewer-prev" id="viewerPrev" aria-label="Anterior">&#10094;</button>
-      <button class="viewer-nav viewer-next" id="viewerNext" aria-label="Siguiente">&#10095;</button>
-      <button class="icon-btn viewer-close" id="viewerClose" aria-label="Cerrar">&times;</button>
-
-      <div class="viewer-media">
-        <div class="viewer-stage" id="viewerStage">
-          <img id="viewerImage" src="" alt="" />
-        </div>
-
-        <div class="zoom-controls">
-          <button class="zoom-btn" id="zoomOutBtn" aria-label="Alejar">-</button>
-          <button class="zoom-btn" id="zoomResetBtn" aria-label="Restablecer">0</button>
-          <button class="zoom-btn" id="zoomInBtn" aria-label="Acercar">+</button>
-        </div>
-      </div>
-
-      <div class="viewer-info glass">
-        <span class="viewer-tag" id="viewerBadge">Producto</span>
-        <h3 id="viewerTitle">Producto</h3>
-        <div class="viewer-price" id="viewerPrice">$0</div>
-        <p id="viewerDescription"></p>
-
-        <ul class="viewer-list">
-          <li id="viewerLine1"></li>
-          <li id="viewerLine2"></li>
-          <li id="viewerLine3"></li>
-        </ul>
-
-        <div class="viewer-actions">
-          <button class="btn btn-primary" id="viewerAddBtn">Agregar al pedido</button>
-          <button class="btn btn-secondary" id="viewerConsultBtn">Consultar por WhatsApp</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <script>
     const products = [
       {
         id: 1,
-        name: "Diseño urbano 01",
-        description: "Una pieza con mucha presencia visual, ideal para quienes buscan algo llamativo, diferente y con impronta propia.",
+        name: "Estampa personalizada 01",
+        description: "Diseño llamativo con terminacion prolija para destacar cualquier idea visual.",
         price: 14500,
-        badge: "Destacado",
-        image: "https://iili.io/qX7aYnj.jpg",
-        line1: "Trabajo con estilo fuerte y terminación prolija.",
-        line2: "Ideal para personalizar y destacar mejor una idea.",
-        line3: "Se adapta muy bien a pedidos especiales."
+        badge: "Personalizado",
+        image: "https://iili.io/qX7aYnj.jpg"
       },
       {
         id: 2,
-        name: "Diseño urbano 02",
-        description: "Una propuesta con carácter, buena fuerza visual y una estética marcada para lucirse mucho mejor.",
+        name: "Estampa urbana 02",
+        description: "Una opcion con presencia fuerte para trabajos modernos y de alto impacto visual.",
         price: 16200,
         badge: "Urbano",
-        image: "https://iili.io/qX7a5Zb.jpg",
-        line1: "Pieza visualmente potente y con mucha actitud.",
-        line2: "Buena opción para trabajos de alto impacto.",
-        line3: "Ideal para quienes buscan algo con personalidad."
+        image: "https://iili.io/qX7a5Zb.jpg"
       },
       {
         id: 3,
-        name: "Diseño urbano 03",
-        description: "Una opción creativa y adaptable, pensada para lograr un resultado visual atractivo y bien definido.",
+        name: "Diseño creativo 03",
+        description: "Ideal para darle identidad a prendas, regalos o piezas promocionales.",
         price: 13800,
         badge: "Creativo",
-        image: "https://iili.io/qX7au99.jpg",
-        line1: "Estilo canchero y adaptable a distintas ideas.",
-        line2: "Buena presencia desde cualquier ángulo.",
-        line3: "Perfecto para sumar identidad y detalle."
+        image: "https://iili.io/qX7au99.jpg"
       },
       {
         id: 4,
-        name: "Diseño urbano 04",
-        description: "Trabajo con terminación marcada, pensado para destacar por su impronta y su carácter visual.",
+        name: "Trabajo personalizado 04",
+        description: "Una propuesta pensada para destacar detalles y lograr una terminacion canchera.",
         price: 17100,
         badge: "Top",
-        image: "https://iili.io/qX7aRwu.jpg",
-        line1: "Presencia fuerte y resultado llamativo.",
-        line2: "Funciona muy bien como pieza protagonista.",
-        line3: "Ideal para quienes quieren algo bien distinto."
+        image: "https://iili.io/qX7aRwu.jpg"
       },
       {
         id: 5,
-        name: "Diseño urbano 05",
-        description: "Una propuesta con mucha actitud, equilibrio visual y terminación cuidada para un resultado premium.",
+        name: "Estampa premium 05",
+        description: "Visual potente y acabado prolijo para pedidos unicos o en cantidad.",
         price: 18900,
         badge: "Premium",
-        image: "https://iili.io/qX7aE8P.jpg",
-        line1: "Look más intenso y bien trabajado.",
-        line2: "Perfecto para destacar detalles y estilo.",
-        line3: "Muy buena opción para pedidos especiales."
+        image: "https://iili.io/qX7aE8P.jpg"
       },
       {
         id: 6,
-        name: "Diseño urbano 06",
-        description: "Una pieza versátil, con buena lectura visual y una estética moderna que resalta por sí sola.",
+        name: "Diseño versatil 06",
+        description: "Una opcion adaptable a distintos estilos, marcas o propuestas personalizadas.",
         price: 15400,
-        badge: "Versátil",
-        image: "https://iili.io/qX7a1cB.jpg",
-        line1: "Diseño adaptable con mucha personalidad.",
-        line2: "Acompaña muy bien distintos estilos.",
-        line3: "Ideal para una propuesta limpia pero fuerte."
+        badge: "Versatil",
+        image: "https://iili.io/qX7a1cB.jpg"
       },
       {
         id: 7,
-        name: "Diseño urbano 07",
-        description: "Trabajo visualmente sólido, pensado para quienes buscan una pieza con fuerza y mejor presencia.",
+        name: "Producto destacado 07",
+        description: "Trabajo visual con buena presencia para mostrar mejor el producto terminado.",
         price: 17600,
-        badge: "Protagonista",
-        image: "https://iili.io/qX7aM91.jpg",
-        line1: "Una pieza que resalta sin esfuerzo.",
-        line2: "Muy buena para destacar en conjunto o sola.",
-        line3: "Se luce mucho en pedidos personalizados."
+        badge: "Destacado",
+        image: "https://iili.io/qX7aM91.jpg"
       },
       {
         id: 8,
-        name: "Diseño urbano 08",
-        description: "Una opción especial para quienes buscan algo llamativo, prolijo y con identidad bien marcada.",
+        name: "Estampa especial 08",
+        description: "Pensado para pedidos con identidad propia y un resultado bien marcado.",
         price: 16700,
         badge: "Especial",
-        image: "https://iili.io/qX7aVAF.jpg",
-        line1: "Visual atractivo y con carácter propio.",
-        line2: "Buena opción para una pieza distintiva.",
-        line3: "Pensado para destacar mejor los detalles."
+        image: "https://iili.io/qX7aVAF.jpg"
       },
       {
         id: 9,
         name: "Diseño urbano 09",
-        description: "Una pieza con esencia callejera, buena presencia y una imagen fuerte para destacar mejor.",
+        description: "Una pieza con estilo callejero y presencia visual para destacar en redes o catalogo.",
         price: 15800,
         badge: "Street",
-        image: "https://iili.io/qX7awMv.jpg",
-        line1: "Estética urbana con mucho peso visual.",
-        line2: "Se adapta bien a pedidos con onda.",
-        line3: "Ideal para quienes buscan algo con actitud."
+        image: "https://iili.io/qX7awMv.jpg"
       },
       {
         id: 10,
-        name: "Diseño urbano 10",
-        description: "Una propuesta prolija y con potencia visual, pensada para lucirse de forma más profesional.",
+        name: "Trabajo pro 10",
+        description: "Ideal para mostrar calidad visual y transmitir una imagen mas profesional.",
         price: 18200,
         badge: "Pro",
-        image: "https://iili.io/qX7aeFp.jpg",
-        line1: "Trabajo bien definido y con presencia.",
-        line2: "Ideal para una imagen más fuerte y cuidada.",
-        line3: "Muy buena opción para destacar mejor una idea."
+        image: "https://iili.io/qX7aeFp.jpg"
       },
       {
         id: 11,
-        name: "Diseño urbano 11",
-        description: "Una pieza llamativa con estilo marcado, ideal para completar una propuesta con variedad y fuerza visual.",
+        name: "Diseño final 11",
+        description: "Una propuesta atractiva para completar el catalogo con variedad y presencia.",
         price: 17300,
         badge: "Nuevo",
-        image: "https://iili.io/qX7aNPR.jpg",
-        line1: "Buena presencia y mucha identidad.",
-        line2: "Pensado para sumar variedad sin perder estilo.",
-        line3: "Se luce mejor en pedidos con personalidad."
+        image: "https://iili.io/qX7aNPR.jpg"
       }
     ];
-
-    const WA_NUMBER = "5491111111111";
-    const DEMO_TEXT = "WEB DEMO CIBORG 347 | HTTPS://ciborg347.onrender.com";
 
     const productsTrack = document.getElementById("productsTrack");
     const cartItemsEl = document.getElementById("cartItems");
     const cartCountEl = document.getElementById("cartCount");
     const cartTotalEl = document.getElementById("cartTotal");
     const cartPanel = document.getElementById("cartPanel");
-    const screenOverlay = document.getElementById("screenOverlay");
-    const floatingWrap = document.getElementById("floatingWrap");
-    const footer = document.getElementById("footer");
-    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
     const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const directWaBtn = document.getElementById("directWaBtn");
+    const waFloat = document.getElementById("waFloat");
 
-    const productViewer = document.getElementById("productViewer");
-    const viewerImage = document.getElementById("viewerImage");
-    const viewerTitle = document.getElementById("viewerTitle");
-    const viewerPrice = document.getElementById("viewerPrice");
-    const viewerDescription = document.getElementById("viewerDescription");
-    const viewerBadge = document.getElementById("viewerBadge");
-    const viewerLine1 = document.getElementById("viewerLine1");
-    const viewerLine2 = document.getElementById("viewerLine2");
-    const viewerLine3 = document.getElementById("viewerLine3");
-
+    const WA_NUMBER = "5491111111111";
+    const DEMO_MESSAGE = "WEB DEMO CIBORG 347 | HTTPS://ciborg347.onrender.com";
     let cart = [];
-    let currentProductIndex = 0;
-
-    let zoomScale = 1;
-    let translateX = 0;
-    let translateY = 0;
-    let dragging = false;
-    let startX = 0;
-    let startY = 0;
-    let initialDistance = null;
-    let pinchStartScale = 1;
 
     function formatPrice(value){
       return new Intl.NumberFormat("es-AR", {
-        style: "currency",
-        currency: "ARS",
-        maximumFractionDigits: 0
+        style:"currency",
+        currency:"ARS",
+        maximumFractionDigits:0
       }).format(value);
     }
 
     function renderProducts(){
-      productsTrack.innerHTML = products.map((product, index) => `
-        <article class="product-card glass glow pulse">
-          <div class="product-media" onclick="openViewer(${index})">
-            <span class="badge">${product.badge}</span>
+      productsTrack.innerHTML = products.map((product) => `
+        <article class="product-card glass glow-border pulse">
+          <div class="product-media">
+            <span class="product-badge">${product.badge}</span>
             <img src="${product.image}" alt="${product.name}" loading="lazy" />
           </div>
 
           <div class="product-body">
-            <div class="product-top">
+            <div class="product-title">
               <h3>${product.name}</h3>
               <span class="price">${formatPrice(product.price)}</span>
             </div>
@@ -1541,7 +1312,7 @@
             <p>${product.description}</p>
 
             <div class="product-actions">
-              <button class="mini-btn view" onclick="openViewer(${index})">Ver más</button>
+              <button class="mini-btn view" onclick="scrollToPedido()">Consultar</button>
               <button class="mini-btn add" onclick="addToCart(${product.id})">Agregar</button>
             </div>
           </div>
@@ -1550,11 +1321,11 @@
     }
 
     function addToCart(productId){
-      const product = products.find(item => item.id === productId);
-      const existing = cart.find(item => item.id === productId);
+      const product = products.find(p => p.id === productId);
+      const found = cart.find(item => item.id === productId);
 
-      if(existing){
-        existing.qty += 1;
+      if(found){
+        found.qty += 1;
       } else {
         cart.push({ ...product, qty: 1 });
       }
@@ -1588,7 +1359,7 @@
       cartTotalEl.textContent = formatPrice(totalPrice);
 
       if(cart.length === 0){
-        cartItemsEl.innerHTML = `<div class="cart-empty">Todavía no agregaste productos.<br />Elegí lo que te guste y armá tu pedido.</div>`;
+        cartItemsEl.innerHTML = `<div class="cart-empty">Todavia no agregaste productos.<br />Elegí lo que te guste y armá tu pedido.</div>`;
         return;
       }
 
@@ -1604,31 +1375,21 @@
               <button onclick="changeQty(${item.id}, 1)">+</button>
             </div>
           </div>
-          <button class="remove-item" onclick="removeItem(${item.id})" aria-label="Eliminar">✕</button>
+          <button class="remove-item" onclick="removeItem(${item.id})" aria-label="Eliminar producto">✕</button>
         </div>
       `).join("");
     }
 
-    function buildWhatsAppMessage(singleProduct = null){
-      if(singleProduct){
-        return [
-          DEMO_TEXT,
-          "",
-          "Consulta desde la web demo:",
-          `- ${singleProduct.name}`,
-          `- ${formatPrice(singleProduct.price)}`
-        ].join("\n");
-      }
-
+    function buildWhatsAppMessage(){
       if(cart.length === 0){
-        return DEMO_TEXT;
+        return DEMO_MESSAGE;
       }
 
       const lines = cart.map(item => `- ${item.name} x${item.qty} | ${formatPrice(item.price * item.qty)}`);
       const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
       return [
-        DEMO_TEXT,
+        DEMO_MESSAGE,
         "",
         "Pedido desde la web demo:",
         ...lines,
@@ -1637,65 +1398,22 @@
       ].join("\n");
     }
 
-    function openWhatsApp(singleProduct = null){
-      const text = encodeURIComponent(buildWhatsAppMessage(singleProduct));
+    function openWhatsApp(){
+      const text = encodeURIComponent(buildWhatsAppMessage());
       const url = `https://wa.me/${WA_NUMBER}?text=${text}`;
       window.open(url, "_blank");
     }
 
     function openCart(){
       cartPanel.classList.add("open");
-      screenOverlay.classList.add("show");
+      overlay.classList.add("show");
       document.body.style.overflow = "hidden";
     }
 
     function closeCart(){
       cartPanel.classList.remove("open");
-      if(!productViewer.classList.contains("show")){
-        screenOverlay.classList.remove("show");
-        document.body.style.overflow = "";
-      }
-    }
-
-    function openViewer(index){
-      currentProductIndex = index;
-      updateViewer();
-      productViewer.classList.add("show");
-      screenOverlay.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeViewer(){
-      productViewer.classList.remove("show");
-      resetZoom();
-      if(!cartPanel.classList.contains("open")){
-        screenOverlay.classList.remove("show");
-        document.body.style.overflow = "";
-      }
-    }
-
-    function updateViewer(){
-      const product = products[currentProductIndex];
-      viewerImage.src = product.image;
-      viewerImage.alt = product.name;
-      viewerTitle.textContent = product.name;
-      viewerPrice.textContent = formatPrice(product.price);
-      viewerDescription.textContent = product.description;
-      viewerBadge.textContent = product.badge;
-      viewerLine1.textContent = product.line1;
-      viewerLine2.textContent = product.line2;
-      viewerLine3.textContent = product.line3;
-      resetZoom();
-    }
-
-    function nextViewer(){
-      currentProductIndex = (currentProductIndex + 1) % products.length;
-      updateViewer();
-    }
-
-    function prevViewer(){
-      currentProductIndex = (currentProductIndex - 1 + products.length) % products.length;
-      updateViewer();
+      overlay.classList.remove("show");
+      document.body.style.overflow = "";
     }
 
     function scrollCarousel(direction){
@@ -1703,84 +1421,32 @@
       if(!card) return;
       const gap = 18;
       const amount = card.offsetWidth + gap;
-      productsTrack.scrollBy({ left: direction * amount, behavior: "smooth" });
+      productsTrack.scrollBy({
+        left: direction * amount,
+        behavior: "smooth"
+      });
     }
 
-    function applyTransform(){
-      viewerImage.style.setProperty("--scale", zoomScale);
-      viewerImage.style.setProperty("--tx", translateX + "px");
-      viewerImage.style.setProperty("--ty", translateY + "px");
-    }
-
-    function clampTranslate(){
-      const stage = document.getElementById("viewerStage");
-      const stageRect = stage.getBoundingClientRect();
-      const maxX = Math.max(0, ((stageRect.width * zoomScale) - stageRect.width) / 2);
-      const maxY = Math.max(0, ((stageRect.height * zoomScale) - stageRect.height) / 2);
-      translateX = Math.max(-maxX, Math.min(maxX, translateX));
-      translateY = Math.max(-maxY, Math.min(maxY, translateY));
-    }
-
-    function zoomIn(){
-      zoomScale = Math.min(zoomScale + 0.25, 4);
-      clampTranslate();
-      applyTransform();
-    }
-
-    function zoomOut(){
-      zoomScale = Math.max(zoomScale - 0.25, 1);
-      if(zoomScale === 1){
-        translateX = 0;
-        translateY = 0;
-      }
-      clampTranslate();
-      applyTransform();
-    }
-
-    function resetZoom(){
-      zoomScale = 1;
-      translateX = 0;
-      translateY = 0;
-      applyTransform();
-    }
-
-    function getDistance(t1, t2){
-      const dx = t2.clientX - t1.clientX;
-      const dy = t2.clientY - t1.clientY;
-      return Math.hypot(dx, dy);
+    function scrollToPedido(){
+      document.getElementById("pedido").scrollIntoView({ behavior:"smooth", block:"start" });
     }
 
     document.getElementById("prevBtn").addEventListener("click", () => scrollCarousel(-1));
     document.getElementById("nextBtn").addEventListener("click", () => scrollCarousel(1));
-
     document.getElementById("cartFab").addEventListener("click", openCart);
     document.getElementById("openCartBtn").addEventListener("click", openCart);
     document.getElementById("closeCartBtn").addEventListener("click", closeCart);
-    document.getElementById("checkoutBtn").addEventListener("click", () => openWhatsApp());
+    document.getElementById("checkoutBtn").addEventListener("click", openWhatsApp);
+    overlay.addEventListener("click", closeCart);
 
-    document.getElementById("directWaBtn").addEventListener("click", (e) => {
+    directWaBtn.addEventListener("click", (e) => {
       e.preventDefault();
       openWhatsApp();
     });
 
-    document.getElementById("waFloat").addEventListener("click", (e) => {
+    waFloat.addEventListener("click", (e) => {
       e.preventDefault();
       openWhatsApp();
-    });
-
-    document.getElementById("viewerClose").addEventListener("click", closeViewer);
-    document.getElementById("viewerNext").addEventListener("click", nextViewer);
-    document.getElementById("viewerPrev").addEventListener("click", prevViewer);
-    document.getElementById("viewerAddBtn").addEventListener("click", () => addToCart(products[currentProductIndex].id));
-    document.getElementById("viewerConsultBtn").addEventListener("click", () => openWhatsApp(products[currentProductIndex]));
-
-    document.getElementById("zoomInBtn").addEventListener("click", zoomIn);
-    document.getElementById("zoomOutBtn").addEventListener("click", zoomOut);
-    document.getElementById("zoomResetBtn").addEventListener("click", resetZoom);
-
-    screenOverlay.addEventListener("click", () => {
-      closeCart();
-      closeViewer();
     });
 
     menuBtn.addEventListener("click", () => {
@@ -1788,103 +1454,12 @@
     });
 
     document.querySelectorAll(".mobile-menu a").forEach(link => {
-      link.addEventListener("click", () => mobileMenu.classList.remove("show"));
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if(productViewer.classList.contains("show")){
-        if(e.key === "Escape") closeViewer();
-        if(e.key === "ArrowRight") nextViewer();
-        if(e.key === "ArrowLeft") prevViewer();
-        if(e.key === "+") zoomIn();
-        if(e.key === "-") zoomOut();
-      } else if(cartPanel.classList.contains("open") && e.key === "Escape"){
-        closeCart();
-      }
-    });
-
-    const viewerStage = document.getElementById("viewerStage");
-
-    viewerStage.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      if(e.deltaY < 0) zoomIn();
-      else zoomOut();
-    }, { passive: false });
-
-    viewerStage.addEventListener("dblclick", () => {
-      if(zoomScale > 1) resetZoom();
-      else zoomIn();
-    });
-
-    viewerStage.addEventListener("mousedown", (e) => {
-      if(zoomScale <= 1) return;
-      dragging = true;
-      startX = e.clientX - translateX;
-      startY = e.clientY - translateY;
-      viewerStage.style.cursor = "grabbing";
-    });
-
-    window.addEventListener("mousemove", (e) => {
-      if(!dragging) return;
-      translateX = e.clientX - startX;
-      translateY = e.clientY - startY;
-      clampTranslate();
-      applyTransform();
-    });
-
-    window.addEventListener("mouseup", () => {
-      dragging = false;
-      viewerStage.style.cursor = "";
-    });
-
-    viewerStage.addEventListener("touchstart", (e) => {
-      if(e.touches.length === 2){
-        initialDistance = getDistance(e.touches[0], e.touches[1]);
-        pinchStartScale = zoomScale;
-      } else if(e.touches.length === 1 && zoomScale > 1){
-        dragging = true;
-        startX = e.touches[0].clientX - translateX;
-        startY = e.touches[0].clientY - translateY;
-      }
-    }, { passive: true });
-
-    viewerStage.addEventListener("touchmove", (e) => {
-      if(e.touches.length === 2 && initialDistance){
-        const currentDistance = getDistance(e.touches[0], e.touches[1]);
-        const nextScale = pinchStartScale * (currentDistance / initialDistance);
-        zoomScale = Math.max(1, Math.min(4, nextScale));
-        clampTranslate();
-        applyTransform();
-      } else if(e.touches.length === 1 && dragging && zoomScale > 1){
-        translateX = e.touches[0].clientX - startX;
-        translateY = e.touches[0].clientY - startY;
-        clampTranslate();
-        applyTransform();
-      }
-    }, { passive: true });
-
-    viewerStage.addEventListener("touchend", (e) => {
-      if(e.touches.length < 2){
-        initialDistance = null;
-      }
-      if(e.touches.length === 0){
-        dragging = false;
-      }
-    });
-
-    const footerObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          floatingWrap.classList.add("lift");
-        } else {
-          floatingWrap.classList.remove("lift");
-        }
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("show");
       });
-    }, { threshold: 0.15 });
+    });
 
-    footerObserver.observe(footer);
-
-    const revealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           entry.target.classList.add("visible");
@@ -1892,9 +1467,11 @@
           entry.target.classList.remove("visible");
         }
       });
-    }, { threshold: 0.14 });
+    }, {
+      threshold: 0.14
+    });
 
-    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
     renderProducts();
     updateCart();
